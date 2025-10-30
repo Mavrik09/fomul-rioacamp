@@ -3,184 +3,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrição - Acamp 2026</title>
+    <title>Inscrição - Acamp'26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos básicos */
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        h1 { text-align: center; color: #333; }
-        label { display: block; margin-top: 10px; font-weight: bold; }
-        input[type="text"], input[type="email"], input[type="number"], input[type="tel"], select, textarea {
-            width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+        :root {
+            --verde-escuro: #2C5530;
+            --verde-medio: #4F7942;
+            --laranja-terra: #DDA15E;
+            --bege-claro: #FEFAE0;
+            --marrom: #8B4513;
+            --branco: #ffffff;
+            --cinza-texto: #3C3C3C;
         }
-        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 20px; }
-        button:hover { background-color: #45a049; }
-        .hidden { display: none; }
-        .radio-group { margin-top: 5px; margin-bottom: 10px; }
-        .section-title { margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", Arial, sans-serif;
+            background-color: var(--bege-claro);
+            margin: 0;
+            padding: 0;
+            color: var(--cinza-texto);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 C40,10 60,10 80,20 C90,40 90,60 80,80 C60,90 40,90 20,80 C10,60 10,40 20,20 Z" fill="%232C5530" opacity="0.03"/></svg>');
+        }
+
+        /* Cabeçalho com imagem de capa florestal */
+        header {
+            background: linear-gradient(rgba(44, 85, 48, 0.75), rgba(77, 121, 66, 0.7)), 
+                        url('fundoform.png') center/cover no-repeat;
+            color: var(--bege-claro);
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 750px;
+            margin: -50px auto 60px;
+            background: var(--branco);
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(44, 85, 48, 0.15);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(221, 161, 94, 0.3);
+        }
+
+        .section-title {
+            margin-top: 35px;
+            border-bottom: 3px solid var(--laranja-terra);
+            padding-bottom: 10px;
+            color: var(--verde-escuro);
+            font-size: 1.5em;
+            font-weight: 600;
+            position: relative;
+            padding-left: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 6px;
+            background-color: var(--laranja-terra);
+            border-radius: 3px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: 500;
+            color: var(--verde-escuro);
+        }
+
+        .required::after {
+            content: " *";
+            color: #c53d13;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            font-family: "Montserrat", Arial, sans-serif;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--laranja-terra);
+            box-shadow: 0 0 0 3px rgba(221, 161, 94, 0.2);
+            background-color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .radio-group label:hover {
+            color: var(--verde-medio);
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.1);
+            accent-color: var(--verde-medio);
+        }
+
+        button {
+            background: linear-gradient(to right, var(--verde-medio), var(--verde-escuro));
+            color: var(--bege-claro);
+            padding: 16px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 85, 48, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        #message {
+            text-align: center;
+            color: #c53d13;
+            margin-top: 15px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: rgba(197, 61, 19, 0.05);
+            border: 1px solid rgba(197, 61, 19, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .leaf-decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .leaf-1 {
+            top: 20px;
+            right: 20px;
+            transform: rotate(45deg);
+            font-size: 80px;
+            color: var(--verde-escuro);
+        }
+
+        .leaf-2 {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(-15deg);
+            font-size: 60px;
+            color: var(--verde-medio);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 80px 15px 50px 15px;
+            }
+
+            header h1 {
+                font-size: 3em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+
+            .container {
+                margin: -30px 15px 40px;
+                padding: 25px;
+            }
+
+            .radio-group {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="header-content">
+            <h1>Acamp'26</h1>
+            <p>Um fim de semana de natureza, atividades em família, ministrações, louvores e dinâmicas, alimentação e infraestrutura inclusas. Traga sua família e amigos para viverem uma experiência inesquecível!</p>
+        </div>
+    </header>
+
     <div class="container">
-        <h1>Formulário de Inscrição Acamp 2026</h1>
+        <div class="leaf-decoration leaf-1">🌿</div>
+        <div class="leaf-decoration leaf-2">🍂</div>
+        
         <form id="registrationForm">
             <h2 class="section-title">Dados Pessoais</h2>
-            <label for="fullName">Nome completo:</label>
-            <input type="text" id="fullName" name="fullName" required>
 
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="fullName" class="required">Nome completo:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
 
-            <label for="age">Idade:</label>
-            <input type="number" id="age" name="age" min="0" required>
+            <div class="form-group">
+                <label for="email" class="required">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-            <label for="phone">Telefone (WhatsApp):</label>
-            <input type="tel" id="phone" name="phone">
+            <div class="form-group">
+                <label for="age" class="required">Idade:</label>
+                <input type="number" id="age" name="age" min="0" required>
+            </div>
 
-            <label for="address">Endereço completo:</label>
-            <textarea id="address" name="address"></textarea>
+            <div class="form-group">
+                <label for="phone" class="required">Telefone (WhatsApp):</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address" class="required">Endereço completo:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
             
-            <label>Pertence à Família ABBApai?</label>
-            <div class="radio-group">
-                <input type="radio" id="abbaSim" name="abbaFamily" value="Sim" required onclick="toggleField('churchField', false)">
-                <label for="abbaSim">Sim</label>
-                <input type="radio" id="abbaNao" name="abbaFamily" value="Não" onclick="toggleField('churchField', true)">
-                <label for="abbaNao">Não</label>
+            <div class="form-group">
+                <label class="required">Pertence à Família ABBApai?</label>
+                <div class="radio-group">
+                    <input type="radio" id="abbaSim" name="abbaFamily" value="Sim" required onclick="toggleField('churchField', false)">
+                    <label for="abbaSim">Sim</label>
+                    <input type="radio" id="abbaNao" name="abbaFamily" value="Não" onclick="toggleField('churchField', true)">
+                    <label for="abbaNao">Não</label>
+                </div>
             </div>
             
             <div id="churchField" class="hidden">
-                <label for="churchName">Qual Igreja que você faz parte?</label>
-                <input type="text" id="churchName" name="churchName">
+                <div class="form-group">
+                    <label for="churchName" class="required">Qual Igreja que você faz parte?</label>
+                    <input type="text" id="churchName" name="churchName" required>
+                </div>
             </div>
 
-            <label>Já participou de algum acampamento anterior?</label>
-            <div class="radio-group">
-                <input type="radio" id="prevCampSim" name="prevCamp" value="Sim" onclick="toggleField('expectationsField', true)">
-                <label for="prevCampSim">Sim</label>
-                <input type="radio" id="prevCampNao" name="prevCamp" value="Não" onclick="toggleField('expectationsField', false)">
-                <label for="prevCampNao">Não</label>
+            <div class="form-group">
+                <label class="required">Já participou de algum acampamento anterior?</label>
+                <div class="radio-group">
+                    <input type="radio" id="prevCampSim" name="prevCamp" value="Sim" required onclick="toggleField('expectationsField', true)">
+                    <label for="prevCampSim">Sim</label>
+                    <input type="radio" id="prevCampNao" name="prevCamp" value="Não" onclick="toggleField('expectationsField', false)">
+                    <label for="prevCampNao">Não</label>
+                </div>
             </div>
             
             <div id="expectationsField" class="hidden">
-                <label>Suas expectativas sobre o evento foram atendidas?</label>
-                <div class="radio-group">
-                    <input type="radio" id="expYes" name="expectationsMet" value="Sim">
-                    <label for="expYes">Sim</label>
-                    <input type="radio" id="expNo" name="expectationsMet" value="Não">
-                    <label for="expNo">Não</label>
+                <div class="form-group">
+                    <label class="required">Suas expectativas sobre o evento foram atendidas?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="expYes" name="expectationsMet" value="Sim" required>
+                        <label for="expYes">Sim</label>
+                        <input type="radio" id="expNo" name="expectationsMet" value="Não">
+                        <label for="expNo">Não</label>
+                    </div>
                 </div>
             </div>
 
             <h2 class="section-title">Grupo/Família</h2>
-            <label>Você faz parte de uma família/grupo com 4 ou mais pessoas que serão participantes?</label>
-            <div class="radio-group">
-                <input type="radio" id="groupSim" name="familyGroup" value="Sim" onclick="toggleField('groupDetailsField', true)">
-                <label for="groupSim">Sim</label>
-                <input type="radio" id="groupNao" name="familyGroup" value="Não" onclick="toggleField('groupDetailsField', false)">
-                <label for="groupNao">Não</label>
+            <div class="form-group">
+                <label class="required">Você faz parte de uma família/grupo com 4 ou mais pessoas que serão participantes?</label>
+                <div class="radio-group">
+                    <input type="radio" id="groupSim" name="familyGroup" value="Sim" required onclick="toggleField('groupDetailsField', true)">
+                    <label for="groupSim">Sim</label>
+                    <input type="radio" id="groupNao" name="familyGroup" value="Não" onclick="toggleField('groupDetailsField', false)">
+                    <label for="groupNao">Não</label>
+                </div>
             </div>
 
             <div id="groupDetailsField" class="hidden">
-                <label for="groupSize">Quantas pessoas compõem sua família/grupo?</label>
-                <input type="number" id="groupSize" name="groupSize" min="4">
+                <div class="form-group">
+                    <label for="groupSize" class="required">Quantas pessoas compõem sua família/grupo?</label>
+                    <input type="number" id="groupSize" name="groupSize" min="3" required>
+                </div>
 
-                <label for="groupNames">Informe os nomes dos integrantes do grupo:</label>
-                <textarea id="groupNames" name="groupNames" placeholder="Nome 1, Nome 2, ..."></textarea>
+                <div class="form-group">
+                    <label for="groupNames" class="required">Informe os nomes dos integrantes do grupo:</label>
+                    <textarea id="groupNames" name="groupNames" placeholder="Nome 1, Nome 2, ..." required></textarea>
+                </div>
                 
-                <label>Deseja que as inscrições sejam vinculadas para desconto familiar?</label>
-                <div class="radio-group">
-                    <input type="radio" id="discountSim" name="discountLink" value="Sim">
-                    <label for="discountSim">Sim</label>
-                    <input type="radio" id="discountNao" name="discountLink" value="Não">
-                    <label for="discountNao">Não</label>
+                <div class="form-group">
+                    <label class="required">Deseja que as inscrições sejam vinculadas para desconto familiar?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="discountSim" name="discountLink" value="Sim" required>
+                        <label for="discountSim">Sim</label>
+                        <input type="radio" id="discountNao" name="discountLink" value="Não">
+                        <label for="discountNao">Não</label>
+                    </div>
                 </div>
             </div>
             
             <h2 class="section-title">Informações Adicionais</h2>
-            <label for="paymentMethod">Qual Método de pagamento você prefere?</label>
-            <select id="paymentMethod" name="paymentMethod" required>
-                <option value="">Selecione...</option>
-                <option value="Cartao">Cartão</option>
-                <option value="Carne">Carnê</option>
-                <option value="Pix">Pix</option>
-                <option value="Especie">Em Espécie</option>
-            </select>
+            <div class="form-group">
+                <label for="paymentMethod" class="required">Qual Método de pagamento você prefere?</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Selecione...</option>
+                    <option value="Cartao">Cartão</option>
+                    <option value="Carne">Carnê</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Especie">Em Espécie</option>
+                </select>
+            </div>
             
-            <label>Possui alguma restrição alimentar?</label>
-            <div class="radio-group">
-                <input type="radio" id="foodRestrictionSim" name="foodRestriction" value="Sim" onclick="toggleField('foodRestrictionDescField', true)">
-                <label for="foodRestrictionSim">Sim</label>
-                <input type="radio" id="foodRestrictionNao" name="foodRestriction" value="Não" onclick="toggleField('foodRestrictionDescField', false)">
-                <label for="foodRestrictionNao">Não</label>
+            <div class="form-group">
+                <label class="required">Possui alguma restrição alimentar?</label>
+                <div class="radio-group">
+                    <input type="radio" id="foodRestrictionSim" name="foodRestriction" value="Sim" required onclick="toggleField('foodRestrictionDescField', true)">
+                    <label for="foodRestrictionSim">Sim</label>
+                    <input type="radio" id="foodRestrictionNao" name="foodRestriction" value="Não" onclick="toggleField('foodRestrictionDescField', false)">
+                    <label for="foodRestrictionNao">Não</label>
+                </div>
             </div>
             
             <div id="foodRestrictionDescField" class="hidden">
-                <label for="foodRestrictionDesc">DESCREVA a restrição alimentar:</label>
-                <textarea id="foodRestrictionDesc" name="foodRestrictionDesc"></textarea>
+                <div class="form-group">
+                    <label for="foodRestrictionDesc" class="required">DESCREVA a restrição alimentar:</label>
+                    <textarea id="foodRestrictionDesc" name="foodRestrictionDesc" required></textarea>
+                </div>
             </div>
 
-            <label>Possui alguma condição de saúde ou alergia que devemos saber?</label>
-            <div class="radio-group">
-                <input type="radio" id="healthConditionSim" name="healthCondition" value="Sim" onclick="toggleField('healthConditionDescField', true)">
-                <label for="healthConditionSim">Sim</label>
-                <input type="radio" id="healthConditionNao" name="healthCondition" value="Não" onclick="toggleField('healthConditionDescField', false)">
-                <label for="healthConditionNao">Não</label>
+            <div class="form-group">
+                <label class="required">Possui alguma condição de saúde ou alergia que devemos saber?</label>
+                <div class="radio-group">
+                    <input type="radio" id="healthConditionSim" name="healthCondition" value="Sim" required onclick="toggleField('healthConditionDescField', true)">
+                    <label for="healthConditionSim">Sim</label>
+                    <input type="radio" id="healthConditionNao" name="healthCondition" value="Não" onclick="toggleField('healthConditionDescField', false)">
+                    <label for="healthConditionNao">Não</label>
+                </div>
             </div>
 
             <div id="healthConditionDescField" class="hidden">
-                <label for="healthConditionDesc">DESCREVA a condição de saúde/alergia:</label>
-                <textarea id="healthConditionDesc" name="healthConditionDesc"></textarea>
+                <div class="form-group">
+                    <label for="healthConditionDesc" class="required">DESCREVA a condição de saúde/alergia:</label>
+                    <textarea id="healthConditionDesc" name="healthConditionDesc" required></textarea>
+                </div>
             </div>
 
-            <label>Você é menor de idade?</label>
-            <div class="radio-group">
-                <input type="radio" id="minorSim" name="isMinor" value="Sim" onclick="toggleField('responsibleField', true)">
-                <label for="minorSim">Sim</label>
-                <input type="radio" id="minorNao" name="isMinor" value="Não" onclick="toggleField('responsibleField', false)">
-                <label for="minorNao">Não</label>
+            <div class="form-group">
+                <label class="required">Você é menor de idade?</label>
+                <div class="radio-group">
+                    <input type="radio" id="minorSim" name="isMinor" value="Sim" required onclick="toggleField('responsibleField', true)">
+                    <label for="minorSim">Sim</label>
+                    <input type="radio" id="minorNao" name="isMinor" value="Não" onclick="toggleField('responsibleField', false)">
+                    <label for="minorNao">Não</label>
+                </div>
             </div>
 
             <div id="responsibleField" class="hidden">
-                <label for="responsibleName">Nome completo do responsável:</label>
-                <input type="text" id="responsibleName" name="responsibleName">
+                <div class="form-group">
+                    <label for="responsibleName" class="required">Nome completo do responsável:</label>
+                    <input type="text" id="responsibleName" name="responsibleName" required>
+                </div>
 
-                <label for="responsiblePhone">Telefone do responsável:</label>
-                <input type="tel" id="responsiblePhone" name="responsiblePhone">
+                <div class="form-group">
+                    <label for="responsiblePhone" class="required">Telefone do responsável:</label>
+                    <input type="tel" id="responsiblePhone" name="responsiblePhone" required>
+                </div>
             </div>
             
-            <label for="howDidYouKnow">Como ficou sabendo do Acamp 2026? (Opcional)</label>
-            <input type="text" id="howDidYouKnow" name="howDidYouKnow">
+            <div class="form-group">
+                <label for="howDidYouKnow">Como ficou sabendo do Acamp 2026? (Opcional)</label>
+                <input type="text" id="howDidYouKnow" name="howDidYouKnow">
+            </div>
 
             <button type="submit">Finalizar Inscrição</button>
-            <p id="message" style="text-align: center; color: red; margin-top: 10px;"></p>
+            <p id="message"></p>
         </form>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
     <script src="app.js"></script>
 
     <script>
-        // Função universal para alternar a visibilidade de campos condicionais
         function toggleField(fieldId, show) {
             const fieldDiv = document.getElementById(fieldId);
             const inputs = fieldDiv.querySelectorAll('input, textarea, select');
             
             if (show) {
                 fieldDiv.classList.remove('hidden');
-                // Adiciona 'required' aos campos visíveis se necessário (opcional)
-                inputs.forEach(input => input.setAttribute('data-required-conditional', 'true'));
+                inputs.forEach(input => {
+                    input.setAttribute('required', 'true');
+                    input.setAttribute('data-required-conditional', 'true');
+                });
             } else {
                 fieldDiv.classList.add('hidden');
-                // Remove os dados para não serem enviados (ou zera)
                 inputs.forEach(input => {
+                    input.removeAttribute('required');
                     input.removeAttribute('data-required-conditional');
-                    if (input.type === 'text' || input.tagName === 'TEXTAREA' || input.type === 'tel' || input.type === 'number') {
-                        input.value = ''; // Limpa o valor para não ir para o banco
-                    } else if (input.type === 'radio' || input.type === 'checkbox') {
-                        input.checked = false; // Desmarca opções
-                    }
+                    if (['text', 'tel', 'number'].includes(input.type) || input.tagName === 'TEXTAREA') input.value = '';
+                    if (['radio', 'checkbox'].includes(input.type)) input.checked = false;
                 });
             }
         }
