@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição - Acamp 2026</title>
+    <style>
+        /* Estilos básicos */
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h1 { text-align: center; color: #333; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="number"], input[type="tel"], select, textarea {
+            width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+        }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 20px; }
+        button:hover { background-color: #45a049; }
+        .hidden { display: none; }
+        .radio-group { margin-top: 5px; margin-bottom: 10px; }
+        .section-title { margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário de Inscrição Acamp 2026</h1>
+        <form id="registrationForm">
+            <h2 class="section-title">Dados Pessoais</h2>
+            <label for="fullName">Nome completo:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" min="0" required>
+
+            <label for="phone">Telefone (WhatsApp):</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="address">Endereço completo:</label>
+            <textarea id="address" name="address"></textarea>
+            
+            <label>Pertence à Família ABBApai?</label>
+            <div class="radio-group">
+                <input type="radio" id="abbaSim" name="abbaFamily" value="Sim" required onclick="toggleField('churchField', false)">
+                <label for="abbaSim">Sim</label>
+                <input type="radio" id="abbaNao" name="abbaFamily" value="Não" onclick="toggleField('churchField', true)">
+                <label for="abbaNao">Não</label>
+            </div>
+            
+            <div id="churchField" class="hidden">
+                <label for="churchName">Qual Igreja que você faz parte?</label>
+                <input type="text" id="churchName" name="churchName">
+            </div>
+
+            <label>Já participou de algum acampamento anterior?</label>
+            <div class="radio-group">
+                <input type="radio" id="prevCampSim" name="prevCamp" value="Sim" onclick="toggleField('expectationsField', true)">
+                <label for="prevCampSim">Sim</label>
+                <input type="radio" id="prevCampNao" name="prevCamp" value="Não" onclick="toggleField('expectationsField', false)">
+                <label for="prevCampNao">Não</label>
+            </div>
+            
+            <div id="expectationsField" class="hidden">
+                <label>Suas expectativas sobre o evento foram atendidas?</label>
+                <div class="radio-group">
+                    <input type="radio" id="expYes" name="expectationsMet" value="Sim">
+                    <label for="expYes">Sim</label>
+                    <input type="radio" id="expNo" name="expectationsMet" value="Não">
+                    <label for="expNo">Não</label>
+                </div>
+            </div>
+
+            <h2 class="section-title">Grupo/Família</h2>
+            <label>Você faz parte de uma família/grupo com 4 ou mais pessoas que serão participantes?</label>
+            <div class="radio-group">
+                <input type="radio" id="groupSim" name="familyGroup" value="Sim" onclick="toggleField('groupDetailsField', true)">
+                <label for="groupSim">Sim</label>
+                <input type="radio" id="groupNao" name="familyGroup" value="Não" onclick="toggleField('groupDetailsField', false)">
+                <label for="groupNao">Não</label>
+            </div>
+
+            <div id="groupDetailsField" class="hidden">
+                <label for="groupSize">Quantas pessoas compõem sua família/grupo?</label>
+                <input type="number" id="groupSize" name="groupSize" min="4">
+
+                <label for="groupNames">Informe os nomes dos integrantes do grupo:</label>
+                <textarea id="groupNames" name="groupNames" placeholder="Nome 1, Nome 2, ..."></textarea>
+                
+                <label>Deseja que as inscrições sejam vinculadas para desconto familiar?</label>
+                <div class="radio-group">
+                    <input type="radio" id="discountSim" name="discountLink" value="Sim">
+                    <label for="discountSim">Sim</label>
+                    <input type="radio" id="discountNao" name="discountLink" value="Não">
+                    <label for="discountNao">Não</label>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Informações Adicionais</h2>
+            <label for="paymentMethod">Qual Método de pagamento você prefere?</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Selecione...</option>
+                <option value="Cartao">Cartão</option>
+                <option value="Carne">Carnê</option>
+                <option value="Pix">Pix</option>
+                <option value="Especie">Em Espécie</option>
+            </select>
+            
+            <label>Possui alguma restrição alimentar?</label>
+            <div class="radio-group">
+                <input type="radio" id="foodRestrictionSim" name="foodRestriction" value="Sim" onclick="toggleField('foodRestrictionDescField', true)">
+                <label for="foodRestrictionSim">Sim</label>
+                <input type="radio" id="foodRestrictionNao" name="foodRestriction" value="Não" onclick="toggleField('foodRestrictionDescField', false)">
+                <label for="foodRestrictionNao">Não</label>
+            </div>
+            
+            <div id="foodRestrictionDescField" class="hidden">
+                <label for="foodRestrictionDesc">DESCREVA a restrição alimentar:</label>
+                <textarea id="foodRestrictionDesc" name="foodRestrictionDesc"></textarea>
+            </div>
+
+            <label>Possui alguma condição de saúde ou alergia que devemos saber?</label>
+            <div class="radio-group">
+                <input type="radio" id="healthConditionSim" name="healthCondition" value="Sim" onclick="toggleField('healthConditionDescField', true)">
+                <label for="healthConditionSim">Sim</label>
+                <input type="radio" id="healthConditionNao" name="healthCondition" value="Não" onclick="toggleField('healthConditionDescField', false)">
+                <label for="healthConditionNao">Não</label>
+            </div>
+
+            <div id="healthConditionDescField" class="hidden">
+                <label for="healthConditionDesc">DESCREVA a condição de saúde/alergia:</label>
+                <textarea id="healthConditionDesc" name="healthConditionDesc"></textarea>
+            </div>
+
+            <label>Você é menor de idade?</label>
+            <div class="radio-group">
+                <input type="radio" id="minorSim" name="isMinor" value="Sim" onclick="toggleField('responsibleField', true)">
+                <label for="minorSim">Sim</label>
+                <input type="radio" id="minorNao" name="isMinor" value="Não" onclick="toggleField('responsibleField', false)">
+                <label for="minorNao">Não</label>
+            </div>
+
+            <div id="responsibleField" class="hidden">
+                <label for="responsibleName">Nome completo do responsável:</label>
+                <input type="text" id="responsibleName" name="responsibleName">
+
+                <label for="responsiblePhone">Telefone do responsável:</label>
+                <input type="tel" id="responsiblePhone" name="responsiblePhone">
+            </div>
+            
+            <label for="howDidYouKnow">Como ficou sabendo do Acamp 2026? (Opcional)</label>
+            <input type="text" id="howDidYouKnow" name="howDidYouKnow">
+
+            <button type="submit">Finalizar Inscrição</button>
+            <p id="message" style="text-align: center; color: red; margin-top: 10px;"></p>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script src="app.js"></script>
+
+    <script>
+        // Função universal para alternar a visibilidade de campos condicionais
+        function toggleField(fieldId, show) {
+            const fieldDiv = document.getElementById(fieldId);
+            const inputs = fieldDiv.querySelectorAll('input, textarea, select');
+            
+            if (show) {
+                fieldDiv.classList.remove('hidden');
+                // Adiciona 'required' aos campos visíveis se necessário (opcional)
+                inputs.forEach(input => input.setAttribute('data-required-conditional', 'true'));
+            } else {
+                fieldDiv.classList.add('hidden');
+                // Remove os dados para não serem enviados (ou zera)
+                inputs.forEach(input => {
+                    input.removeAttribute('data-required-conditional');
+                    if (input.type === 'text' || input.tagName === 'TEXTAREA' || input.type === 'tel' || input.type === 'number') {
+                        input.value = ''; // Limpa o valor para não ir para o banco
+                    } else if (input.type === 'radio' || input.type === 'checkbox') {
+                        input.checked = false; // Desmarca opções
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
